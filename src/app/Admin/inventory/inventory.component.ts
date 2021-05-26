@@ -155,6 +155,7 @@ export class InventoryComponent implements OnInit {
     this.addSelectFields.splice(value, 1);
   }
   getProductList() {
+    debugger
     this.inventoryService.getProduct().subscribe((data: any) => {
       this.product = data;
       this.product.forEach(element => {

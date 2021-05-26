@@ -82,10 +82,11 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h4 class="card-title">Inventory Managment</h4>
                 </div>
-                <div class="col-md-5" *ngIf="!Chagesproduct.length >0"></div>
+                <div class="col-md-6" *ngIf="!Chagesproduct.length >0"></div>
+                
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
                     <button type="submit" class="btn btn-info btn-round" (click)="AddToNewArrival()">New
                         Arrivals</button>
@@ -106,10 +107,13 @@
                     <button type="submit" class="btn btn-danger btn-round" (click)="removeProduct()">Delete
                         Product</button>
                 </div>
+                <div class="col-md-1" *ngIf="Chagesproduct.length >0">
+                    <button type="submit" class="btn btn-warning btn-round" routerLink="/category">edit Product</button>
+                </div>
                 <div class="col-md-1">
                     <button type="submit" class="btn btn-info btn-round" routerLink="/category">Add Product</button>
                 </div>
-            </div>
+            </div   >
         </div>
         <div class="modal fade" id="saleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
@@ -249,17 +253,16 @@
                                 </label>
                             </div>
                         </th>
-                        <th>#</th>
-                        <th>Merchent Name</th>
-                        <th>Product ID</th>
-                        <th class="text-center">Product Image</th>
+                        <th class="text-center">#</th>
+                        <!-- <th>Merchent Name</th> -->
+                        <!-- <th>Product ID</th> -->
                         <th>Product Name</th>
-
-                        <th>Product Quantity</th>
-                        <th>Product Price</th>
-
-                        <th>Sold Product</th>
-                        <th>Action</th>
+                        <th class="text-center">Product Image</th>
+                        <th class="text-center">Product Category</th>
+                        <th class="text-center">Size with Quantity</th>
+                        <th class="text-center">Product Price</th>
+                        <!-- <th>Sold Product</th> -->
+                        <th class="text-center">Action</th>
 
                     </tr>
                 </thead>
@@ -274,30 +277,68 @@
                                 </label>
                             </div>
                         </td>
-                        <td>{{i+1}}</td>
-                        <td>{{p.manufacturerName}}</td>
-                        <td>{{p.productSRNumber}}</td>
-                        <td>
+                        <td class="text-center">{{i+1}}</td>
+                        <!-- <td>{{p.manufacturerName}}</td> -->
+                        <!-- <td>{{p.productSRNumber}}</td> -->
+                        <td>{{p.productName}}</td>
+
+                        <td class="text-center">
                             <div class="img-container">
                                 <img src="http://localhost:8090{{p.productMainImage}}">
                             </div>
                         </td>
-                        <td>{{p.productName}}</td>
-                        <td>
+                        <td class="text-center">
+                            {{p.subCategory}}
+                        </td>
+                        <!-- <td>
                             <div *ngFor="let s of p.sizeList">
                                 <span style="font-size: 0.8rem;"> {{s.size}} - {{s.quantity}} pcs</span>
                             </div>
+                        </td> -->
+                        <td class="text-center">
+                            <table id="datatable" cellspacing="0" width="30%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">XS</th>
+                                        <th class="text-center">S</th>
+                                        <th class="text-center">M</th>
+                                        <th class="text-center">L</th>
+                                        <th class="text-center">XL</th>
+                                        <th class="text-center">XXL</th>
+                                        <th class="text-center">3XL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </td>
-                        <td>{{p.productPrice}} <i class="fa fa-inr" aria-hidden="true"></i></td>
+                        <td class="text-center">{{p.productPrice}} <i class="fa fa-inr" aria-hidden="true"></i></td>
 
-                        <td>
+                        <!-- <td>
                             <div *ngFor="let s of p.sizeList">
                                 <span style="font-size: 0.8rem;"> {{s.size}} - {{s.soldquantity}} pcs</span>
                             </div>
-                        </td>
-                        <td>
-                            <button type="button" title="View" data-toggle="modal" data-target="#noticeModal"
-                                class="btn btn-info" (click)="restokProduct(p,i)">Restock</button>
+                        </td> -->
+                        <td class="text-center">
+                            <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm" 
+                            data-toggle="modal" data-target="#noticeModal" >
+                                    <i class="fa fa-edit" (click)="restokProduct(p,i)"></i>
+                                </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm"
+                            (click)="removeProduct(p,i)">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <!-- <button type="button" title="View" data-toggle="modal" data-target="#noticeModal"
+                                class="btn btn-info" (click)="restokProduct(p,i)">Restock</button> -->
                         </td>
                     </tr>
                 </tbody>
@@ -372,7 +413,7 @@
                             </div>
                             <br>
                             <div class="row">
-                               
+
                                 <!-- <label class="col-sm-1 col-form-label">Type</label>
                                 <div class="col-sm-3">
                                
@@ -474,7 +515,8 @@
                 <div class="modal-footer justify-content-center">
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Save Stock</button>
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Save
+                                Stock</button>
                         </div>
                     </div>
 

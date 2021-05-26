@@ -66,6 +66,9 @@ export class CategoryComponent implements OnInit {
   addSelectFields: any = [];
   value = 0;
   multiplefile: any = [];
+  imageError: string;
+  isImageSaved: boolean = true;
+  cardImageBase64: string;
 
 
   constructor(
@@ -80,7 +83,7 @@ export class CategoryComponent implements OnInit {
     this.ProductModel.avibilityStatus = false;
     this.ProductModel.emiOptiions = false;
     this.ProductModel.relatedProduct = false;
-    this.ProductModel.discountPrice =0;
+    this.ProductModel.discountPrice = 0;
 
   }
 
@@ -187,22 +190,22 @@ export class CategoryComponent implements OnInit {
     debugger
     this.editCat = Data;
   }
-  updatemaincatddl(parent,name){
+  updatemaincatddl(parent, name) {
     debugger
     this.editCat.parent = parent;
-    this.selectedCat=name;
+    this.selectedCat = name;
   }
   EditedSaveCategory(data) {
     debugger
     this.categoryService.updateMainCat(data).subscribe((req) => {
       console.log(req);
-      this.apiservice.showNotification('top','right','Successfully updated.','success');
+      this.apiservice.showNotification('top', 'right', 'Successfully updated.', 'success');
       this.getSubCategory(this.subToSubCat);
 
     })
   }
-  EditedSavesubCategory(){
-    
+  EditedSavesubCategory() {
+
   }
   cateMain(id) {
     this.ImagesModel.mainCategoryId = id;
@@ -224,7 +227,7 @@ export class CategoryComponent implements OnInit {
     })
     this.categoryService.saveCat(this.CategoryModel).subscribe((response) => {
       console.log(response);
-      this.apiservice.showNotification('top','right','Category successfully added.','success');
+      this.apiservice.showNotification('top', 'right', 'Category successfully added.', 'success');
       this.getSubCategory(this.subToSubCat);
     })
   }
@@ -255,7 +258,7 @@ export class CategoryComponent implements OnInit {
       }
     })
     this.categoryService.saveCat(this.CategoryModel).subscribe((response) => {
-      this.apiservice.showNotification('top','right','Sub Category successfully added.','success');
+      this.apiservice.showNotification('top', 'right', 'Sub Category successfully added.', 'success');
       this.getProductSubCategory(this.CategoryModel.parent);
     })
     this.isSubCatData = true;
@@ -286,42 +289,124 @@ export class CategoryComponent implements OnInit {
 
   select(event) {
     debugger
-    if (event.target.files.length > 0) {
+    let max_height;
+    let max_width;
+    if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      max_height = 800;
+      max_width = 600;
 
-      const formdata = new FormData();
-      formdata.append('file', file);
+      if (event.target.files[0].size > max_size) {
+        this.imageError =
+          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
 
-      debugger
-      this.categoryService.selectUploadImage(formdata).subscribe((response) => {
-        this.image = response;
-        console.log(response);
-        
+        return false;
+      }
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+          console.log(img_height, img_width);
+          if (img_height > max_height && img_width > max_width) {
+            alert("image must be " + max_height + "*" + max_width);
+            this.isImageSaved = false;
+            this.imageError =
+              'Maximum dimentions allowed ' +
+              max_height +
+              '*' +
+              max_width +
+              'px';
 
-      })
 
+            return false;
+          }
+          else {
+            const imgBase64Path = e.target.result;
+            this.cardImageBase64 = imgBase64Path;
+
+            const formdata = new FormData();
+            formdata.append('file', file);
+
+            debugger
+            this.categoryService.selectUploadImage(formdata).subscribe((response) => {
+              this.image = response;
+              console.log(response);
+
+
+            })
+            // this.previewImagePath = imgBase64Path;
+          }
+        };
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
     }
   }
+
   // Multiple Image Uploader
 
   onSelect(event) {
+    let max_height;
+    let max_width;
     debugger
-    if (event.target.files.length > 0) {
+    if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      max_height = 800;
+      max_width = 600;
 
-      const formdata = new FormData();
-      formdata.append('file', file);
-      formdata.append('catid', this.ImagesModel.mainCategoryId);
-      formdata.append('subcatid', this.ImagesModel.categoryId);
-      formdata.append('grandchild', this.ImagesModel.subCategoryId);
+      if (event.target.files[0].size > max_size) {
+        this.imageError =
+          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+
+        return false;
+      }
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+          console.log(img_height, img_width);
+          if (img_height > max_height && img_width > max_width) {
+            alert("image must be " + max_height + "*" + max_width);
+            this.isImageSaved = false;
+            this.imageError =
+              'Maximum dimentions allowed ' +
+              max_height +
+              '*' +
+              max_width +
+              'px';
+            return false;
+          }
+          else {
+            const imgBase64Path = e.target.result;
+            this.cardImageBase64 = imgBase64Path;
+            const formdata = new FormData();
+            formdata.append('file', file);
+            formdata.append('catid', this.ImagesModel.mainCategoryId);
+            formdata.append('subcatid', this.ImagesModel.categoryId);
+            formdata.append('grandchild', this.ImagesModel.subCategoryId);
 
 
-      this.categoryService.selectMultiUploadImage(formdata).subscribe((response) => {
-        this.multi.push(response);
-        console.log(response);
+            this.categoryService.selectMultiUploadImage(formdata).subscribe((response) => {
+              this.multi.push(response);
+              console.log(response);
 
-      })
+            })
+            // this.previewImagePath = imgBase64Path;
+          }
+        };
+      };
 
+      reader.readAsDataURL(event.target.files[0]);
     }
   }
   addSelectSize() {
@@ -350,7 +435,7 @@ export class CategoryComponent implements OnInit {
       this.clothsize.forEach(element => {
         if (element.id == id) {
           this.addSelectFields[index].selsize = element.size;
-          this.addSelectFields[index].soldquantity =0;
+          this.addSelectFields[index].soldquantity = 0;
         }
       })
     }
@@ -369,13 +454,13 @@ export class CategoryComponent implements OnInit {
     this.ProductModel.productMainImage = this.image;
     this.ProductModel.selectedSize = this.addSelectFields;
     this.ProductModel.multi = this.multi;
-    if(this.ProductModel.subCategory == undefined){
+    if (this.ProductModel.subCategory == undefined) {
       this.ProductModel.subCategory = null;
     }
     // this.ImagesModel.
     // this.QuantityWithSizeModel.addSelectFields = this.addSelectFields;
     this.categoryService.saveAddProduct(this.ProductModel).subscribe((response) => {
-      this.apiservice.showNotification('top','right','Product successfully added.','success');
+      this.apiservice.showNotification('top', 'right', 'Product successfully added.', 'success');
       // this.router.navigate(['/inventory']);
     })
   }
