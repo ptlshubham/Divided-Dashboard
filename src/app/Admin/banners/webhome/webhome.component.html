@@ -48,10 +48,13 @@
             </div>
             <div class="card-footer">
                 <div class="row">
-
-                    <div class="col-md-3 ml-auto">
+                    <div class="col-md-9"></div>
+                    <div class="col-md-1">
                         <button type="submit" class="btn btn-info btn-round" [disabled]="!productRegForm.form.valid"
                             id="product-submit" (click)="saveBannersImage()">Submit</button> &nbsp;
+                     
+                    </div>
+                    <div class="col-md-1">
                         <button type="submit" class="btn btn-info btn-round" (click)="cancelAddImage()">Cancel</button>
                     </div>
 
@@ -63,8 +66,7 @@
         <div class="card-header">
             <h4 class="card-title">Banners List</h4>
             <div class="col-md-2 ml-auto">
-                <button type="submit" style="margin-top: -75px;" class="btn btn-info btn-round"
-                    (click)="addNewImages()">Add New</button>
+                <button type="submit" class="btn btn-info btn-round" (click)="addNewImages()">Add New</button>
             </div>
         </div>
         <div class="card-body">
@@ -103,8 +105,10 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" *ngIf="web.status" (click)="deactiveBanners(i)">Active</button>
-                                    <button class="btn btn-danger" *ngIf=!web.status (click)="activeBanners(i)">Deactive</button>
+                                    <button class="btn btn-success" *ngIf="web.status"
+                                        (click)="deactiveBanners(i)">Active</button>
+                                    <button class="btn btn-danger" *ngIf=!web.status
+                                        (click)="activeBanners(i)">Deactive</button>
                                 </td>
                                 <td class="text-right">
                                     <!-- <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm"
