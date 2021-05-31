@@ -178,7 +178,7 @@ export class CategoryComponent implements OnInit {
   }
 
   mainCatRemove(id) {
-
+    debugger
     this.categoryService.removeMainCatList(id).subscribe((req) => {
       this.apiservice.showNotification('top', 'right', 'Main Category removed Successfully.', 'success');
       this.getMainCategory(0);

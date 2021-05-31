@@ -88,20 +88,36 @@
                 <div class="col-md-6" *ngIf="!Chagesproduct.length >0"></div>
                 
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
-                    <button type="submit" class="btn btn-info btn-round" (click)="AddToNewArrival()">New
-                        Arrivals</button>
+                    <!-- <button type="submit" class="btn btn-info btn-round" (click)="AddToNewArrival()">New
+                        Arrivals</button> -->
+                        <label for="arrival">Arrivals</label>
+                        <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
+                                    id="AddToNewArrival" name="AddToNewArrival">
+                                </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
-                    <button type="submit" class="btn btn-info btn-round" (click)="AddToBestProduct()">Best
-                        Product</button>
+                    <!-- <button type="submit" class="btn btn-info btn-round" (click)="AddToBestProduct()">Best
+                        Product</button> -->
+                        <label for="best">Add Best</label>
+                        <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
+                        id="AddToBestProduct" name="AddToBestProduct">
+                    </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
-                    <button type="submit" class="btn btn-info btn-round" (click)="AddToHotProduct()">Hot
-                        Product</button>
+                    <!-- <button type="submit" class="btn btn-info btn-round" (click)="AddToHotProduct()">Hot
+                        Product</button> -->
+                        <label for="hot">Add Hot</label>
+                        <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
+                        id="AddToHotProduct" name="AddToHotProduct">
+                    </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
-                    <button type="submit" class="btn btn-info btn-round" (click)="AddToSale()" data-toggle="modal"
-                        data-target="#saleModal">Sale on Product</button>
+                    <!-- <button type="submit" class="btn btn-info btn-round" (click)="AddToSale()" data-toggle="modal"
+                        data-target="#saleModal">Sale on Product</button> -->
+                        <label for="sale">Add Sale</label>
+                        <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
+                        id="AddToSale" name="AddToSale">
+                    </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
                     <button type="submit" class="btn btn-danger btn-round" (click)="removeProduct()">Delete
@@ -386,7 +402,7 @@
                             <div class="row">
                                 <label class="col-sm-1 col-form-label">Product Image</label>
                                 <div class="col-sm-3">
-                                    <div class="img-container" style="max-width: 30% !important;">
+                                    <div class="img-container" style="max-width: 90% !important;">
                                         <img src="http://localhost:8090{{restock.productMainImage}}">
                                     </div>
                                 </div>
