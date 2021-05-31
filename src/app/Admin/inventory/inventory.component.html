@@ -298,25 +298,25 @@
                         <td class="text-center">
                             <table id="datatable" cellspacing="0" width="30%">
                                 <thead>
-                                    <tr>
-                                        <th class="text-center">XS</th>
-                                        <th class="text-center">S</th>
-                                        <th class="text-center">M</th>
-                                        <th class="text-center">L</th>
-                                        <th class="text-center">XL</th>
-                                        <th class="text-center">XXL</th>
-                                        <th class="text-center">3XL</th>
+                                    <tr >
+                                        <th class="text-center" *ngIf="p.sizeList.length >=1">{{p.sizeList[0].size}}</th>
+                                        <th class="text-center"  *ngIf="p.sizeList.length >=2">{{p.sizeList[1].size}}</th>
+                                        <th class="text-center"  *ngIf="p.sizeList.length >=3">{{p.sizeList[2].size}}</th>
+                                        <th class="text-center"  *ngIf="p.sizeList.length >=4">{{p.sizeList[3].size}}</th>
+                                        <th class="text-center"  *ngIf="p.sizeList.length >=5">{{p.sizeList[4].size}}</th>
+                                        <th class="text-center"  *ngIf="p.sizeList.length >=6">{{p.sizeList[5].size}}</th>
+                                        <th class="text-center"  *ngIf="p.sizeList.length >=7">{{p.sizeList[6].size}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td  *ngIf="p.sizeList.length >=1">{{p.sizeList[0].quantity}}</td>
+                                        <td  *ngIf="p.sizeList.length >=2">{{p.sizeList[1].quantity}}</td>
+                                        <td  *ngIf="p.sizeList.length >=3">{{p.sizeList[2].quantity}}</td>
+                                        <td  *ngIf="p.sizeList.length >=4">{{p.sizeList[3].quantity}}</td>
+                                        <td  *ngIf="p.sizeList.length >=5">{{p.sizeList[4].quantity}}</td>
+                                        <td  *ngIf="p.sizeList.length >=6">{{p.sizeList[5].quantity}}</td>
+                                        <td  *ngIf="p.sizeList.length >=7">{{p.sizeList[6].quantity}}</td>
                                     </tr>
                                 </tbody>
                             </table>

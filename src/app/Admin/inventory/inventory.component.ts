@@ -189,6 +189,9 @@ export class InventoryComponent implements OnInit {
         this.product = data;
         this.product.forEach(element => {
           element.selectedCheck = false;
+          this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+            element.sizeList = data;
+          })
         })
         this.Chagesproduct=[];
       });
@@ -199,6 +202,9 @@ export class InventoryComponent implements OnInit {
         this.product = data;
         this.product.forEach(element => {
           element.selectedCheck = true;
+          this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+            element.sizeList = data;
+          })
         })
         this.Chagesproduct=this.product;
       });
