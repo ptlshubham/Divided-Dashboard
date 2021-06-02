@@ -10,6 +10,7 @@ import { CategoryService } from './category.service';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   declarations: [CategoryComponent],
@@ -19,6 +20,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     JwBootstrapSwitchNg2Module,
     NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
+    ColorPickerModule,
     RouterModule.forChild([
       {
         path:'category',

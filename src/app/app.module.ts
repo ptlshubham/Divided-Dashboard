@@ -15,6 +15,7 @@ import { AppRoutes } from './app.routing';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth/auth-http-interceptor';
+import { ColorPickerModule } from 'ngx-color-picker';
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 // import { HomeModule } from './User/home/home.module';
 // import { ProductModule } from './User/product/product.module';
@@ -53,6 +54,7 @@ export function tokenGetter() {
     NavbarModule,
     FooterModule,
     FixedPluginModule,
+    ColorPickerModule,
     // HomeModule,
     // ProductModule,
     // FooterUserModule,
