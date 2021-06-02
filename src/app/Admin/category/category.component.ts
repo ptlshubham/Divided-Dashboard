@@ -69,6 +69,7 @@ export class CategoryComponent implements OnInit {
   imageError: string;
   isImageSaved: boolean = true;
   cardImageBase64: string;
+  color1: '#2883e9'
 
 
   constructor(

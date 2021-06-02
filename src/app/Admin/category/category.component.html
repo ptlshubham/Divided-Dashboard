@@ -477,6 +477,10 @@
                                         [(ngModel)]="i.quantity" placeholder=" Enter Quantity">
                                 </div>
                             </div>
+                            <div class="col-md-2" style="margin-top: 6px!important;">
+                                <input [style.background]="color1"
+                                 [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEventLog('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)"/>
+                              </div>
                             <div class="col-md-1">
                                 <i class="fa fa-plus-circle" aria-hidden="true" (click)="addSelectSize()"
                                     style="font-size: 35px !important;margin-top:9%!important;"></i>
