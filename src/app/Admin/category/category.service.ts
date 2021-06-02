@@ -21,7 +21,9 @@ export class CategoryService {
     debugger
     return this.httpClient.post<any>(ApiService.saveMainURL, admin);
   }
-
+  GetFilterProduct(data){
+    return this.httpClient.post<any>(ApiService.getFilterProductListURL,data);
+  }
   getMainCat(id): Observable<Category[]>{
     debugger
     return this.httpClient.get<any>(ApiService.getMainURL+id);

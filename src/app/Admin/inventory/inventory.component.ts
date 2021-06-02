@@ -42,6 +42,11 @@ export class InventoryComponent implements OnInit {
   subtosubid:any;
   isdef:boolean=true;
   isntdef:boolean=false;
+
+  addnewarrival:boolean=false;
+  addbestprdt:boolean=false;
+  addhotprdt:boolean=false;
+  addsale:boolean=false;
   
   public category: Category[] = [];
   public subcategory: Category[] = [];
@@ -88,10 +93,27 @@ export class InventoryComponent implements OnInit {
     });
   }
   cateMain(id) {
+    this.maincatid = null;
+    this.subcatid = null;
+    this.subToSubCat = null;
     this.maincatid = id;
+    let data={
+      maincatid:this.maincatid,
+      catid:null,
+      subid:null
+    }
+    this.categoryService.GetFilterProduct(data).subscribe(data => {
+      this.product = data;
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+    });
     this.category.forEach(element => {
       if (element.id == id) {
         this.selectedCat = element.name;
+        
       }
     })
     this.getSubCategory(id);
@@ -99,12 +121,40 @@ export class InventoryComponent implements OnInit {
   }
   getSubCategory(id) {
     this.subToSubCat = id;
+    let data={
+      maincatid:this.maincatid,
+      catid:this.subcatid,
+      subid: this.subToSubCat
+    }
+    debugger
+    this.categoryService.GetFilterProduct(data).subscribe(data => {
+      this.product = data;
+      debugger
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+    });
     this.categoryService.getMainCat(id).subscribe(data => {
       this.subcategory = data;
     });
   }
   cateCategory(id) {
     this.subcatid = id;
+    let data={
+      maincatid:this.maincatid,
+      catid:this.subcatid,
+      subid:null
+    }
+    this.categoryService.GetFilterProduct(data).subscribe(data => {
+      this.product = data;
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+    });
     this.subcategory.forEach(element => {
       if (element.id == id) {
         this.selectedSubCat = element.name;
@@ -120,6 +170,22 @@ export class InventoryComponent implements OnInit {
   }
   subProCategory(id) {
     this.subToSubCat = id;
+    this.subToSubCat = id;
+    let data={
+      maincatid:this.maincatid,
+      catid:this.subcatid,
+      subid: this.subToSubCat
+    }
+    debugger
+    this.categoryService.GetFilterProduct(data).subscribe(data => {
+      this.product = data;
+      debugger
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+    });
     this.ProductModel.subCategory = id;
     this.subprodcat.forEach(element => {
       if (element.id == id) {
@@ -263,24 +329,66 @@ export class InventoryComponent implements OnInit {
 
   //filter code from here
   AddToNewArrival(){
+    if(this.addnewarrival == false){
+      this.addnewarrival = true;
+      this.addbestprdt = false;
+      this.addsale = false;
+      this.addhotprdt = false;
       this.inventoryService.addToNewArrivals(this.Chagesproduct).subscribe(data=>{
         alert("added");
       })
+    }
+    else{
+      this.addnewarrival = false;;
+    }
+   
+     
   }
   AddToBestProduct(){
-    this.inventoryService.addToBestProduct(this.Chagesproduct).subscribe(data=>{
-      alert("added");
-    })
+    if(this.addbestprdt == false){
+      this.addnewarrival = false;
+      this.addbestprdt = true;
+      this.addsale = false;
+      this.addhotprdt = false;
+      this.inventoryService.addToBestProduct(this.Chagesproduct).subscribe(data=>{
+        alert("added");
+      })
+    }
+    else{
+      this.addbestprdt = false;
+    }
+   
   }
   AddToHotProduct(){
-    this.inventoryService.addTohotProduct(this.Chagesproduct).subscribe(data=>{
-      alert("added");
-    })
+    if(this.addhotprdt == false){
+      this.addnewarrival = false;
+      this.addbestprdt = false;
+      this.addsale = false;
+      this.addhotprdt = true;
+      this.inventoryService.addTohotProduct(this.Chagesproduct).subscribe(data=>{
+        alert("added");
+      })
+    }
+    else{
+      this.addhotprdt = false;
+    }
+   
   }
   AddToSale(){
-    this.inventoryService.addToSale(this.Chagesproduct).subscribe(data=>{
-      alert("added");
-    })
+    debugger
+    if(this.addsale == false){
+      this.addnewarrival = false;
+      this.addbestprdt = false;
+      this.addsale = true;
+      this.addhotprdt = false;
+      this.inventoryService.addToSale(this.Chagesproduct).subscribe(data=>{
+        alert("added");
+      })
+    }
+    else{
+      this.addsale = false;
+    }
+   
   }
   // getMainCategory() {
   //   this.categoryService.getMainCat().subscribe(data => {

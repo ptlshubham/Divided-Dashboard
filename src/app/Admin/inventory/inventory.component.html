@@ -91,8 +91,8 @@
                     <!-- <button type="submit" class="btn btn-info btn-round" (click)="AddToNewArrival()">New
                         Arrivals</button> -->
                         <label for="arrival">Arrivals</label>
-                        <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
-                                    id="AddToNewArrival" name="AddToNewArrival">
+                        <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'" [ngClass]="status ? 'success' : 'danger'"
+                                    id="AddToNewArrival" name="AddToNewArrival" (click)="AddToNewArrival()" [(ngModel)]="addnewarrival">
                                 </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
@@ -100,7 +100,7 @@
                         Product</button> -->
                         <label for="best">Add Best</label>
                         <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
-                        id="AddToBestProduct" name="AddToBestProduct">
+                        id="AddToBestProduct" name="AddToBestProduct" (click)="AddToBestProduct()" [(ngModel)]="addbestprdt">
                     </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
@@ -108,7 +108,7 @@
                         Product</button> -->
                         <label for="hot">Add Hot</label>
                         <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
-                        id="AddToHotProduct" name="AddToHotProduct">
+                        id="AddToHotProduct" name="AddToHotProduct" (click)="AddToHotProduct()" [(ngModel)]="addhotprdt">
                     </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
@@ -116,7 +116,7 @@
                         data-target="#saleModal">Sale on Product</button> -->
                         <label for="sale">Add Sale</label>
                         <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
-                        id="AddToSale" name="AddToSale">
+                        id="AddToSale" name="AddToSale" (click)="AddToSale()" [(ngModel)]="addsale">
                     </bSwitch>
                 </div>
                 <div class="col-md-1" *ngIf="Chagesproduct.length >0">
