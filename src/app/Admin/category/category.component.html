@@ -479,7 +479,16 @@
                             </div>
                             <div class="col-md-2" style="margin-top: 6px!important;">
                                 <input [style.background]="color1"
+<<<<<<< HEAD
                                  [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEvent('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)"/>
+=======
+                                 [(colorPicker)]="color1" 
+                                 (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" 
+                                 (colorPickerClose)="onEventLog('colorPickerClose', $event)" 
+                                 (cpInputChange)="onEventLog('cpInputChange', $event)" 
+                                 (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" 
+                                 (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)"/>
+>>>>>>> 542dd31dc95de5256e756f47f6e6bcfa1e52d6c0
                               </div>
                             <div class="col-md-1">
                                 <i class="fa fa-plus-circle" aria-hidden="true" (click)="addSelectSize()"
