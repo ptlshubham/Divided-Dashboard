@@ -160,6 +160,9 @@ export class CategoryComponent implements OnInit {
 
     })
   }
+  onEvent(val,ev){
+    debugger
+  }
   getMainCategory(id) {
     this.categoryService.getMainCat(id).subscribe(data => {
       this.category = data;
