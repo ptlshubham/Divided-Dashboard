@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Product } from 'app/Admin/category/product.model';
 import { Category } from '../category/category.model';
 import { CategoryService } from '../category/category.service';
@@ -55,6 +56,7 @@ export class InventoryComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private inventoryService: InventoryService,
+    private router:Router
   ) {
     this.getProductList();
     this.getMainCategory(0);
@@ -90,6 +92,13 @@ export class InventoryComponent implements OnInit {
   getMainCategory(id) {
     this.categoryService.getMainCat(id).subscribe(data => {
       this.category = data;
+    });
+  }
+  editproduct(){
+    this.router.navigate(['category'], {
+      queryParams: {
+        value: JSON.stringify(this.Chagesproduct)
+      },
     });
   }
   cateMain(id) {

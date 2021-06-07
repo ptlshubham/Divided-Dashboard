@@ -24,6 +24,12 @@ export class CategoryService {
   GetFilterProduct(data){
     return this.httpClient.post<any>(ApiService.getFilterProductListURL,data);
   }
+  getProductDetailImages(id){
+    let data={
+      id :id
+    }
+    return this.httpClient.post<any>(ApiService.getProductDetailImageURL,data);
+  }
   getMainCat(id): Observable<Category[]>{
     debugger
     return this.httpClient.get<any>(ApiService.getMainURL+id);

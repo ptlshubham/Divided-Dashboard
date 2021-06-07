@@ -60,6 +60,7 @@ export class ApiService {
   public static GetSizeListURL:string = ApiService.HOST_URL+'/admin/GetProductSizeList'
   public static getAdminProductListURL: string = ApiService.HOST_URL + '/admin/GetProductList';
   public static getFilterProductListURL: string = ApiService.HOST_URL + '/admin/getFilterProductList';
+  public static getProductDetailImageURL: string = ApiService.HOST_URL + '/admin/getProductDetailImage';
 
 
 
