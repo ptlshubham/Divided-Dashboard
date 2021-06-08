@@ -471,6 +471,16 @@
                                         [(ngModel)]="ProductModel.itemWeight" placeholder=" Enter Item Weight">
                                 </div>
                             </div>
+                            <div class="col-md-2" style="margin-top: 6px!important;">
+                                <input [style.background]="color1"
+                                [(ngModel)]="ProductModel.color"
+                                 [(colorPicker)]="color1" 
+                                 (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" 
+                                 (colorPickerClose)="onEventLog('colorPickerClose', $event)" 
+                                 (cpInputChange)="onEventLog('cpInputChange', $event)" 
+                                 (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" 
+                                 (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event,ind)"/>
+                              </div>
                         </div>
                         <br>
                         <div class="row" *ngFor="let i of addSelectFields;let ind=index">
@@ -499,13 +509,15 @@
                                 </div>
                             </div>
                             <div class="col-md-2" style="margin-top: 6px!important;">
-                                <input [style.background]="color1" [(colorPicker)]="color1"
-                                    (colorPickerOpen)="onEventLog('colorPickerOpen', $event)"
-                                    (colorPickerClose)="onEventLog('colorPickerClose', $event)"
-                                    (cpInputChange)="onEventLog('cpInputChange', $event)"
-                                    (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
-                                    (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)" />
-                            </div>
+                                <input [style.background]="color1"
+                                [(ngModel)]="i.color"
+                                 [(colorPicker)]="color1" 
+                                 (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" 
+                                 (colorPickerClose)="onEventLog('colorPickerClose', $event)" 
+                                 (cpInputChange)="onEventLog('cpInputChange', $event)" 
+                                 (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" 
+                                 (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event,ind)"/>
+                              </div>
                             <div class="col-md-1">
                                 <i class="fa fa-plus-circle" aria-hidden="true" (click)="addSelectSize()"
                                     style="font-size: 35px !important;margin-top:9%!important;"></i>
@@ -523,7 +535,8 @@
                                 <span style="color: red;">*Image size must be 800X600</span>
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                     <div class="fileinput-new thumbnail">
-                                        <img src="./assets/img/image_placeholder.jpg" alt="...">
+                                        <img src="./assets/img/image_placeholder.jpg" alt="..." *ngIf="!isEdit">
+                                        <img src="http://localhost:8090{{this.ProductModel.productMainImage}}" alt="..." *ngIf="isEdit">
                                     </div>
                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                     <div>
@@ -538,7 +551,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" *ngIf="!isEdit">
                                 <p class="card-title">Select Product Detail Image</p>
                                 <span style="color: red;">*Image size must be 800X600</span>
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -567,7 +580,8 @@
 
                                     <div class="fileinput-new thumbnail">
 
-                                        <img src="./assets/img/image_placeholder.jpg" alt="...">
+                                        <img src="./assets/img/image_placeholder.jpg" alt="..." *ngIf="!isEdit">
+                                        <img src="http://localhost:8090{{i.productListImage}}" alt="..." *ngIf="isEdit">
                                     </div>
                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                     <div>

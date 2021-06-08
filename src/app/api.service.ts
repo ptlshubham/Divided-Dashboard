@@ -61,6 +61,7 @@ export class ApiService {
   public static getAdminProductListURL: string = ApiService.HOST_URL + '/admin/GetProductList';
   public static getFilterProductListURL: string = ApiService.HOST_URL + '/admin/getFilterProductList';
   public static uploadCategoryBannersURL: string = ApiService.HOST_URL + '/admin/UploadCategoryBannersImage';
+  public static getProductDetailImageURL: string = ApiService.HOST_URL + '/admin/getProductDetailImage';
 
 
 

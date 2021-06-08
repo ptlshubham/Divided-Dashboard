@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'app/api.service';
 import { Category } from './category.model';
 import { CategoryService } from './category.service';
@@ -71,21 +71,47 @@ export class CategoryComponent implements OnInit {
   isImageSaved: boolean = true;
   cardImageBase64: string;
   color1: '#2883e9'
+  isEdit:boolean=false;
 
   constructor(
     private categoryService: CategoryService,
     private fm: FormBuilder,
     private apiservice: ApiService,
-    private router: Router
+    private router: Router,
+    private activatedRoutes:ActivatedRoute
   ) {
     this.mainNavCategory();
-    this.getMainCategory(0);
+    this.getMainCategory(0).then();
     this.ProductModel.startRating = false;
     this.ProductModel.avibilityStatus = false;
     this.ProductModel.emiOptiions = false;
     this.ProductModel.relatedProduct = false;
     this.ProductModel.discountPrice = 0;
-
+    this.activatedRoutes.queryParams.subscribe((res:any) => {
+      if(res){
+         
+        let data = JSON.parse(res.value);
+        debugger
+        this.ProductModel = data[0];
+        this.isEdit=true;
+        this.isProduct = true;
+        this.isShow = false;
+        this.isshowsub = false;
+        this.isCatData = false;
+        this.isMainShow = false;
+        this.isMainCatData = false;
+        this.isSubCatData = false;
+        this.addSelectFields = this.ProductModel.sizeList;
+        this.getdetailImages(this.ProductModel.id);
+        this.cateMain(this.ProductModel.mainCategory);
+        this.cateCategory(this.ProductModel.category);
+        if(this.ProductModel.subCategory != null || this,this.ProductModel.subCategory != undefined){
+          this.subProCategory(this.ProductModel.subCategory);
+        }
+        this.getClothSize();
+     
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -138,6 +164,8 @@ export class CategoryComponent implements OnInit {
   }
   addProduct() {
     this.isProduct = true;
+    this.ProductModel = {};
+    this.isEdit = false;
     this.isShow = false;
     this.isshowsub = false;
     this.isCatData = false;
@@ -150,6 +178,12 @@ export class CategoryComponent implements OnInit {
   ngAfterViewInit() {
     $('[rel="tooltip"]').tooltip();
   }
+  onEventLog(ev,color,i){
+    if(ev == 'cpSliderDragEnd'){
+      this.addSelectFields[i].color = color;
+    }
+   
+  }
   submitMainCategory() {
     this.CategoryModel.parent = 0;
     this.CategoryModel.isactive = 1;
@@ -160,20 +194,31 @@ export class CategoryComponent implements OnInit {
 
     })
   }
-  onEvent(val, ev) {
-    debugger
+  onEvent(val,ev){
+     
   }
-  getMainCategory(id) {
+  getdetailImages(id){
+    this.categoryService.getProductDetailImages(id).subscribe(res =>{
+      this.addingprdtimg = res;
+      debugger
+    })
+  }
+  async getMainCategory(id) {
     this.categoryService.getMainCat(id).subscribe(data => {
       this.category = data;
+      if(this.isEdit == true){
+        this.cateMain(this.ProductModel.mainCategory);
+       
+      
+      }
     });
   }
   mainCatEdit(data) {
-    debugger
+     
     this.editMain = data;
   }
   updateMainCate(data) {
-    debugger
+     
     this.CategoryModel.isactive = 1;
     this.categoryService.updateMainCategory(data).subscribe((req) => {
       this.apiservice.showNotification('top', 'right', 'Updated Main Category Successfully.', 'success');
@@ -182,7 +227,7 @@ export class CategoryComponent implements OnInit {
   }
 
   mainCatRemove(id) {
-    debugger
+     
     this.categoryService.removeMainCatList(id).subscribe((req) => {
       this.apiservice.showNotification('top', 'right', 'Main Category removed Successfully.', 'success');
       this.getMainCategory(0);
@@ -191,16 +236,16 @@ export class CategoryComponent implements OnInit {
     })
   }
   editCategory(Data) {
-    debugger
+     
     this.editCat = Data;
   }
   updatemaincatddl(parent, name) {
-    debugger
+     
     this.editCat.parent = parent;
     this.selectedCat = name;
   }
   EditedSaveCategory(data) {
-    debugger
+     
     this.categoryService.updateMainCat(data).subscribe((req) => {
       console.log(req);
       this.apiservice.showNotification('top', 'right', 'Successfully updated.', 'success');
@@ -212,6 +257,7 @@ export class CategoryComponent implements OnInit {
 
   }
   cateMain(id) {
+     
     this.ImagesModel.mainCategoryId = id;
     this.ProductModel.mainCategory = id;
     this.category.forEach(element => {
@@ -248,10 +294,13 @@ export class CategoryComponent implements OnInit {
     this.getProductSubCategory(id);
   }
   getSubCategory(id) {
-    debugger
+     
     this.subToSubCat = id;
     this.categoryService.getMainCat(id).subscribe(data => {
       this.subcategory = data;
+      if(this.isEdit == true){
+        this.cateCategory(this.ProductModel.category);
+      }
     });
   }
   submitSubCategory() {
@@ -268,9 +317,14 @@ export class CategoryComponent implements OnInit {
     this.isSubCatData = true;
   }
   getProductSubCategory(id) {
-    debugger
+     
     this.categoryService.getMainCat(id).subscribe(data => {
       this.subprodcat = data;
+      if(this.isEdit == true){
+        if(this.ProductModel.subCategory != null || this,this.ProductModel.subCategory != undefined){
+          this.subProCategory(this.ProductModel.subCategory);
+        }
+      }
     });
   }
   subProCategory(id) {
@@ -292,7 +346,7 @@ export class CategoryComponent implements OnInit {
   }
 
   select(event) {
-    debugger
+     
     let max_height;
     let max_width;
     if (event.target.files && event.target.files[0]) {
@@ -336,7 +390,7 @@ export class CategoryComponent implements OnInit {
             const formdata = new FormData();
             formdata.append('file', file);
 
-            debugger
+             
             this.categoryService.selectUploadImage(formdata).subscribe((response) => {
               this.image = response;
               console.log(response);
@@ -357,7 +411,7 @@ export class CategoryComponent implements OnInit {
   onSelect(event) {
     let max_height;
     let max_width;
-    debugger
+     
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       const max_size = 20971520;
@@ -415,7 +469,13 @@ export class CategoryComponent implements OnInit {
   }
   addSelectSize() {
     this.value++;
-    this.addSelectFields.push({ name: this.value, selsize: '', quantity: 0 });
+    let data={
+      selsize : '',
+      quantity :0,
+      color :'#ffffff'
+    }
+    
+     this.addSelectFields.push(data);
   }
   removeSelectSize(value) {
     this.addSelectFields.splice(value, 1);
@@ -454,7 +514,7 @@ export class CategoryComponent implements OnInit {
 
 
   submitAddProduct() {
-    debugger
+     
     this.ProductModel.isActive = 0;
     this.ProductModel.productMainImage = this.image;
     this.ProductModel.selectedSize = this.addSelectFields;
@@ -470,7 +530,7 @@ export class CategoryComponent implements OnInit {
     })
   }
   // removeOrChangedImage() {
-  //   debugger
+  //    
 
   //   this.categoryService.removeOrChanged().subscribe((req) => {
   //   })
