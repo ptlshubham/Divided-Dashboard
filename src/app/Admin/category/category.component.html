@@ -87,7 +87,7 @@
                     <form class="form-horizontal" name="cateRegForm" #cateRegForm="ngForm" (ngSubmit)="onSubmit()">
 
                         <div class="row">
-                            <label class="col-sm-3 col-form-label">Select Main Category</label>
+                            <label class="col-sm-1 col-form-label">Select Main Category</label>
                             <div class="col-sm-3">
                                 <div class="dropdown form-group">
                                     <button class="dropdown-toggle btn btn-primary btn-round btn-block" type="button"
@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <label class="col-sm-3 col-form-label">Add Category</label>
+                            <label class="col-sm-1 col-form-label">Add Category</label>
                             <div class="col-sm-3">
                                 <div class="form-group" [ngClass]="{'form-group-focus':focus===true}">
                                     <input type="text" class="form-control" id="subname" name="subname"
@@ -116,6 +116,25 @@
                                     <div *ngIf="subname.errors.required">Category Name is required</div>
                                     <div [hidden]="!subname.errors('pattern')">Enter Only Name
                                         <!-- <small><b>Mens Wear</b></small> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="col-sm-1 col-form-label">Select Image</label>
+                            <div class="col-sm-3">
+                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail">
+                                        <img src="./assets/img/image_placeholder.jpg" alt="...">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                    <div>
+                                        <span class="btn btn-rose btn-round btn-file">
+                                            <span class="fileinput-new">Select Image</span>
+                                            <span class="fileinput-exists">Change</span>
+                                            <input type="file" id="BannersImage" name="BannersImage"
+                                                (change)="selectBanners($event)" />
+                                        </span>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists"
+                                            data-dismiss="fileinput"><i class="fa fa-times"></i>Remove</a>
                                     </div>
                                 </div>
                             </div>
@@ -332,36 +351,36 @@
                             <div class="col-md-3" [ngClass]="{'form-group-focus':focus===true}">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="productCode" name="productCode"
-                                        [(ngModel)]="ProductModel.productCode" placeholder="Enter Product Code"
-                                        required value=""pattern="^[a-zA-Z0-9]+$" 
-                                        (focus)="focus=true"#productCode="ngModel">
+                                        [(ngModel)]="ProductModel.productCode" placeholder="Enter Product Code" required
+                                        value="" pattern="^[a-zA-Z0-9]+$" (focus)="focus=true" #productCode="ngModel">
                                 </div>
                                 <div *ngIf="productCode.errors && (productCode.dirty || productCode.touched)"
-                                class="alert alert-danger">
-                                <div *ngIf="productCode.errors.required">Product Code is required.
+                                    class="alert alert-danger">
+                                    <div *ngIf="productCode.errors.required">Product Code is required.
+                                    </div>
+                                    <div [hidden]="!productCode.errors('pattern')">Enter Only Characters and Numbers.
+                                    </div>
                                 </div>
-                                <div [hidden]="!productCode.errors('pattern')">Enter Only Characters and Numbers.</div>
-                            </div>
                             </div>
                             <label class="col-md-1 col-form-label">Start Rating</label>
                             <div class="col-md-3">
                                 <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'" id="startRating"
                                     name="startRating" [(ngModel)]="ProductModel.startRating">
                                 </bSwitch>
-                            </div> 
+                            </div>
                             <label class="col-md-1 col-form-label">Product Price</label>
                             <div class="col-md-3" [ngClass]="{'form-group-focus':focus===true}">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="productPrice" name="productPrice"
                                         [(ngModel)]="ProductModel.productPrice" placeholder="Enter Product Price"
-                                        required value="" pattern="^[0-9]*$"(focus)="focus=true"
+                                        required value="" pattern="^[0-9]*$" (focus)="focus=true"
                                         #productPrice="ngModel">
                                 </div>
                                 <div *ngIf="productPrice.errors && (productPrice.dirty || productPrice.touched)"
-                                class="alert alert-danger">
-                                <div *ngIf="productPrice.errors.required">Product Price is required.</div>
-                                <div [hidden]="!productPrice.errors('pattern')">Enter Only Numbers.</div>
-                            </div>
+                                    class="alert alert-danger">
+                                    <div *ngIf="productPrice.errors.required">Product Price is required.</div>
+                                    <div [hidden]="!productPrice.errors('pattern')">Enter Only Numbers.</div>
+                                </div>
                             </div>
                         </div>
                         <br>
@@ -370,13 +389,14 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="discountPrice" name="discountPrice"
-                                        [(ngModel)]="ProductModel.discountPrice" #discountPrice="ngModel"
-                                        required value="" pattern="^[0-9]*$" (focus)="focus=true" placeholder="Enter Discount Price">
+                                        [(ngModel)]="ProductModel.discountPrice" #discountPrice="ngModel" required
+                                        value="" pattern="^[0-9]*$" (focus)="focus=true"
+                                        placeholder="Enter Discount Price">
                                 </div>
                                 <div *ngIf="discountPrice.errors && (discountPrice.dirty || discountPrice.touched)"
-                                class="alert alert-danger">
-                                <div [hidden]="!discountPrice.errors('pattern')">Enter Only Numbers.</div>
-                            </div>
+                                    class="alert alert-danger">
+                                    <div [hidden]="!discountPrice.errors('pattern')">Enter Only Numbers.</div>
+                                </div>
                             </div>
                             <label class="col-md-1 col-form-label">EMI Options</label>
                             <div class="col-md-3">
@@ -388,7 +408,8 @@
                             <label class="col-md-1 col-form-label">Avibilaty Status</label>
                             <div class="col-md-3">
                                 <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'"
-                                    id="avibilityStatus" name="avibilityStatus"[(ngModel)]="ProductModel.avibilityStatus">
+                                    id="avibilityStatus" name="avibilityStatus"
+                                    [(ngModel)]="ProductModel.avibilityStatus">
                                 </bSwitch>
                             </div>
                         </div>
@@ -421,15 +442,15 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="productSRNumber" name="productSRNumber"
                                         [(ngModel)]="ProductModel.productSRNumber" placeholder=" Enter Model Number"
-                                        required value=""pattern="^[a-zA-Z0-9]+$" 
-                                        (focus)="focus=true"#productSRNumber="ngModel">
+                                        required value="" pattern="^[a-zA-Z0-9]+$" (focus)="focus=true"
+                                        #productSRNumber="ngModel">
                                 </div>
                                 <div *ngIf="productSRNumber.errors && (productSRNumber.dirty || productSRNumber.touched)"
-                                class="alert alert-danger">
-                                <div *ngIf="productSRNumber.errors.required">Product Price is required.
+                                    class="alert alert-danger">
+                                    <div *ngIf="productSRNumber.errors.required">Product Price is required.
+                                    </div>
+                                    <div [hidden]="!productSRNumber.errors('pattern')">Enter Only Numbers.</div>
                                 </div>
-                                <div [hidden]="!productSRNumber.errors('pattern')">Enter Only Numbers.</div>
-                            </div>
                             </div>
                         </div>
                         <br>
@@ -478,19 +499,18 @@
                                 </div>
                             </div>
                             <div class="col-md-2" style="margin-top: 6px!important;">
-                                <input [style.background]="color1"
-                                 [(colorPicker)]="color1" 
-                                 (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" 
-                                 (colorPickerClose)="onEventLog('colorPickerClose', $event)" 
-                                 (cpInputChange)="onEventLog('cpInputChange', $event)" 
-                                 (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" 
-                                 (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)"/>
-                              </div>
+                                <input [style.background]="color1" [(colorPicker)]="color1"
+                                    (colorPickerOpen)="onEventLog('colorPickerOpen', $event)"
+                                    (colorPickerClose)="onEventLog('colorPickerClose', $event)"
+                                    (cpInputChange)="onEventLog('cpInputChange', $event)"
+                                    (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
+                                    (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)" />
+                            </div>
                             <div class="col-md-1">
                                 <i class="fa fa-plus-circle" aria-hidden="true" (click)="addSelectSize()"
                                     style="font-size: 35px !important;margin-top:9%!important;"></i>
                             </div>
-                            <div class="col-md-1" *ngIf="ind>0" >
+                            <div class="col-md-1" *ngIf="ind>0">
                                 <i class="fa fa-times-circle-o" aria-hidden="true" (click)="removeSelectSize(ind)"
                                     style="font-size: 35px !important;margin-top:9%!important;margin-left: -76%!important;"></i>
                             </div>
@@ -614,10 +634,10 @@
                         <th>
                             Parent Id
                         </th>
-                        <th >
+                        <th>
                             Created Date
                         </th>
-                        <th >
+                        <th>
                             Updated Date
                         </th>
                         <th class="text-right">
@@ -626,11 +646,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let cat of category;let i=index">
-                            <td >{{i+1}}</td>
+                            <td>{{i+1}}</td>
                             <td>{{cat.name}}</td>
                             <td>{{cat.parent}}</td>
                             <td>{{cat.createddate | date}}</td>
-                            <td >{{cat.updateddate | date}}</td>
+                            <td>{{cat.updateddate | date}}</td>
                             <!-- <td class="text-right">{{cat.id}}</td> -->
 
                             <td class="text-right">
@@ -707,10 +727,10 @@
                         <th>
                             Parent Id
                         </th>
-                        <th >
+                        <th>
                             Created Date
                         </th>
-                        <th >
+                        <th>
                             Updated Date
                         </th>
                         <th class="text-right">
@@ -723,7 +743,7 @@
                             <td>{{subcat.name}}</td>
                             <td>{{subcat.parent}}</td>
                             <td>{{subcat.createddate | date}}</td>
-                            <td >{{subcat.updateddate | date}}</td>
+                            <td>{{subcat.updateddate | date}}</td>
                             <td class="text-right">
                                 <!-- <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm ">
                                     <i class="fa fa-user"></i>
@@ -776,7 +796,8 @@
                                             aria-labelledby="dropdownMenuButton">
                                             <div class="dropdown-header">Select Main Category</div>
                                             <div *ngFor="let c of category">
-                                                <a class="dropdown-item" (click)="updatemaincatddl(c.id,c.name)">{{c.name}}</a>
+                                                <a class="dropdown-item"
+                                                    (click)="updatemaincatddl(c.id,c.name)">{{c.name}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -827,10 +848,10 @@
                         <th>
                             Sub Category Name
                         </th>
-                        <th >
+                        <th>
                             Created Date
                         </th>
-                        <th >
+                        <th>
                             Updated Date
                         </th>
                         <th class="text-right">
@@ -843,13 +864,13 @@
                             <td>{{cat.parent}}</td>
                             <td>{{cat.name}}</td>
                             <td>{{cat.createddate | date}}</td>
-                            <td >{{cat.updateddate | date}}</td>
+                            <td>{{cat.updateddate | date}}</td>
                             <td class="text-right">
                                 <!-- <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm ">
                                     <i class="fa fa-user"></i>
                                 </button> -->
-                                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm" 
-                                data-toggle="modal" data-target="#noticeModal2">
+                                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm"
+                                    data-toggle="modal" data-target="#noticeModal2">
                                     <i class="fa fa-edit"></i>
                                 </button>
                                 <button type="button" rel="tooltip" (click)="mainCatRemove(cat.id)"
@@ -867,77 +888,81 @@
 
     <!-- edit sub category start -->
     <div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-notice">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <i class="nc-icon nc-simple-remove"></i>
-                </button>
-                <h5 class="modal-title" id="myModalLabel">Update Category</h5>
-            </div>
-
-            <div class="modal-body">
-                <div class="instruction">
-                    <form class="form-horizontal" name="mainCateRegForm" #mainCateRegForm="ngForm">
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label">Select Main Category</label>
-                            <div class="col-sm-8">
-                                <div class="dropdown form-group">
-                                    <button class="dropdown-toggle btn btn-primary btn-round btn-block" type="button"
-                                        name="dropdownMenuButton" id="dropdownMenuButton" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">{{selectedCat}}
-
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <div class="dropdown-header">Select Main Category</div>
-                                        <div *ngFor="let c of category">
-                                            <a class="dropdown-item" (click)="cateMain(c.id)">{{c.name}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <label class="col-sm-4 col-form-label">Select Category</label>
-                            <div class="col-sm-8">
-                                <div class="dropdown form-group">
-                                    <button class="dropdown-toggle btn btn-primary btn-round btn-block" type="button"
-                                        name="dropdownMenuButton" id="dropdownMenuButton" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">{{selectedSubCat}}
-
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <div class="dropdown-header">Select Category</div>
-                                        <div *ngFor="let ca of subcategory">
-                                            <a class="dropdown-item" (click)="cateCategory(ca.id)">{{ca.name}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <label class="col-sm-4 col-form-label">Add Sub Category</label>
-                            <div class="col-sm-8">
-                                <div class="form-group" [ngClass]="{'form-group-focus':focus===true}">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Enter Category Name" [(ngModel)]="CategoryModel.name" required
-                                        value="" pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" (focus)="focus=true"
-                                        (blur)="focus=false" #name="ngModel">
-                                </div>
-                                <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
-                                    <div *ngIf="name.errors.required">Category Name is required</div>
-                                    <div [hidden]="!name.errors('pattern')">Enter Only Characters.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+        aria-hidden="true">
+        <div class="modal-dialog modal-notice">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel">Update Category</h5>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-info btn-round" data-dismiss="modal"
-                    (click)="EditedSavesubCategory(editCat)">Update</button>
+
+                <div class="modal-body">
+                    <div class="instruction">
+                        <form class="form-horizontal" name="mainCateRegForm" #mainCateRegForm="ngForm">
+                            <div class="row">
+                                <label class="col-sm-4 col-form-label">Select Main Category</label>
+                                <div class="col-sm-8">
+                                    <div class="dropdown form-group">
+                                        <button class="dropdown-toggle btn btn-primary btn-round btn-block"
+                                            type="button" name="dropdownMenuButton" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">{{selectedCat}}
+
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <div class="dropdown-header">Select Main Category</div>
+                                            <div *ngFor="let c of category">
+                                                <a class="dropdown-item" (click)="cateMain(c.id)">{{c.name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Select Category</label>
+                                <div class="col-sm-8">
+                                    <div class="dropdown form-group">
+                                        <button class="dropdown-toggle btn btn-primary btn-round btn-block"
+                                            type="button" name="dropdownMenuButton" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">{{selectedSubCat}}
+
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <div class="dropdown-header">Select Category</div>
+                                            <div *ngFor="let ca of subcategory">
+                                                <a class="dropdown-item" (click)="cateCategory(ca.id)">{{ca.name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Add Sub Category</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group" [ngClass]="{'form-group-focus':focus===true}">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="Enter Category Name" [(ngModel)]="CategoryModel.name" required
+                                            value="" pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$"
+                                            (focus)="focus=true" (blur)="focus=false" #name="ngModel">
+                                    </div>
+                                    <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+                                        <div *ngIf="name.errors.required">Category Name is required</div>
+                                        <div [hidden]="!name.errors('pattern')">Enter Only Characters.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal"
+                        (click)="EditedSavesubCategory(editCat)">Update</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- edit sub category end -->
+    <!-- edit sub category end -->
 
     <!-- All Data Table End  -->
 

@@ -57,9 +57,10 @@ export class ApiService {
   public static addToBestProductURL: string = ApiService.HOST_URL + '/admin/addToBestProduct';
   public static addToHotProductURL: string = ApiService.HOST_URL + '/admin/addToHotProduct';
   public static addToOnSaleURL: string = ApiService.HOST_URL + '/admin/addToOnSale';
-  public static GetSizeListURL:string = ApiService.HOST_URL+'/admin/GetProductSizeList'
+  public static GetSizeListURL: string = ApiService.HOST_URL + '/admin/GetProductSizeList'
   public static getAdminProductListURL: string = ApiService.HOST_URL + '/admin/GetProductList';
   public static getFilterProductListURL: string = ApiService.HOST_URL + '/admin/getFilterProductList';
+  public static uploadCategoryBannersURL: string = ApiService.HOST_URL + '/admin/UploadCategoryBannersImage';
 
 
 

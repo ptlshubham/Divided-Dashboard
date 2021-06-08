@@ -66,8 +66,10 @@ export class CategoryService {
     return this.httpClient.post<any>(ApiService.uploadMultiImageURL, img);
   }
   removeOrChanged(){
-    debugger
     return this.httpClient.get<any>(ApiService.removeImageURL);
+  }
+  uploadCategoryBannersImage(img): Observable<any>{
+    return this.httpClient.post<any>(ApiService.uploadCategoryBannersURL, img);
   }
   
 
