@@ -253,9 +253,7 @@ export class CategoryComponent implements OnInit {
 
     })
   }
-  EditedSavesubCategory() {
-
-  }
+  
   cateMain(id) {
      
     this.ImagesModel.mainCategoryId = id;
@@ -273,6 +271,7 @@ export class CategoryComponent implements OnInit {
       if (element.name == this.selectedCat) {
         this.CategoryModel.parent = element.id;
         this.CategoryModel.isactive = 1;
+        this.CategoryModel.bannersimage = this.categoryimage;
       }
     })
     this.categoryService.saveCat(this.CategoryModel).subscribe((response) => {
@@ -545,6 +544,8 @@ export class CategoryComponent implements OnInit {
       const file = event.target.files[0];
       // Size Filter Bytes
       const max_size = 20971520;
+      max_height = 380;
+      max_width = 1930;
       const allowed_types = ['image/png', 'image/jpeg'];
       if (event.target.files[0].size > max_size) {
         this.imageError =
