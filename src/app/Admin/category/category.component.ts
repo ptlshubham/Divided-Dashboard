@@ -179,8 +179,9 @@ export class CategoryComponent implements OnInit {
     $('[rel="tooltip"]').tooltip();
   }
   onEventLog(ev,color,i){
-    if(ev == 'cpSliderDragEnd'){
-      this.addSelectFields[i].color = color;
+    debugger
+    if(ev == 'colorPickerClose'){
+      this.addSelectFields[i].color = color.color;
     }
    
   }
