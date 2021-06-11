@@ -115,7 +115,9 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addSelectFields = [{ name: this.value }];
+    this.addSelectFields = [{  selsize : '',
+    quantity :0,
+    color :'#ffffff'}];
     this.value++;
     this.mainCateRegForm = this.fm.group({
       name: ['', Validators.required, Validators.name,],
@@ -135,6 +137,9 @@ export class CategoryComponent implements OnInit {
       productSRNumber: ['', Validators.required, Validators.name],
       discountPrice: ['', Validators.required, Validators.name],
     });
+  }
+  enteredquant(ind){
+    debugger
   }
   mainNavCategory() {
     this.isMainShow = true;
