@@ -12,7 +12,7 @@ export class VendorsComponent implements OnInit {
   ngOnInit(): void {
   }
   addVendors() {
-    debugger
+     
     this.isAdd = true;
   }
   saveVendor(){

@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
         const token: string = localStorage.getItem('authenticationToken');
         const adminToken: string =localStorage.getItem('authenticationAdminToken');
         if ((request.url.substring(22, 27) == 'admin') && request.url != ApiService.saveAdminRegisterURL && request.url != ApiService.saveAdminLoginURL) {
-            debugger
+             
             if (adminToken == null || adminToken == undefined) {
                 console.log("token is null");
                 this.router.navigate(['userlogin']);
@@ -47,7 +47,7 @@ export class AuthInterceptor implements HttpInterceptor {
             
             // if (request.url != ApiService.loginURl && request.url != ApiService.saveUserRegisterURL) {
             //     if(token == null || token == undefined) {
-            //         debugger
+            //          
             //         console.log("token is null");
             //         this.router.navigate(['userlogin']);
             //     }

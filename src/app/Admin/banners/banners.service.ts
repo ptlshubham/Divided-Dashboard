@@ -17,12 +17,12 @@ export class BannersService {
   ) { }
   
   uploadImage(img): Observable<any>{
-    debugger
+     
     return this.httpClient.post<any>(ApiService.uploadBannersImageURL, img);
 
   }
   saveWebBannersImage(admin: Webbanners): Observable<any> {
-    debugger
+     
     return this.httpClient.post<any>(ApiService.saveWebBannersURL, admin);
   }
   getWebBanners(): Observable<Webbanners[]>{
@@ -35,30 +35,30 @@ export class BannersService {
     return this.httpClient.post<any>(ApiService.removeWebBannersURL,bnr);
   }
   saveMobileBannersImage(admin: Webbanners): Observable<any>{
-    debugger
+     
     return this.httpClient.post<any>(ApiService.saveMobileBannersURL, admin);
   }
   getMobileBanners(): Observable<Webbanners[]>{
     return this.httpClient.get<any>(ApiService.getMobileBannersURL);
   }
   removeMobileBanners(id){
-    debugger
+     
     let bnr={
       id:id
     }
     return this.httpClient.post<any>(ApiService.removeMobileBannersURL,bnr);
   }
   uploadMobileBannersImage(img): Observable<any>{
-    debugger
+     
     return this.httpClient.post<any>(ApiService.uploadMobileImageURL, img);
 
   }
   activeDeavctiveBanners(admin: Webbanners): Observable<any> {
-    debugger
+     
     return this.httpClient.post<any>(ApiService.updateActiveStatusURL, admin);
   }
   activeDeavctiveWebBanners(admin: Webbanners): Observable<any> {
-    debugger
+     
     return this.httpClient.post<any>(ApiService.updateActiveWebStatusURL, admin);
   }
 }

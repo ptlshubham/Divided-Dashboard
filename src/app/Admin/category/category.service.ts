@@ -18,7 +18,7 @@ export class CategoryService {
   ) { }
 
   saveMainCat(admin: Category): Observable<any> {
-    debugger
+     
     return this.httpClient.post<any>(ApiService.saveMainURL, admin);
   }
   GetFilterProduct(data){
@@ -31,40 +31,40 @@ export class CategoryService {
     return this.httpClient.post<any>(ApiService.getProductDetailImageURL,data);
   }
   getMainCat(id): Observable<Category[]>{
-    debugger
+     
     return this.httpClient.get<any>(ApiService.getMainURL+id);
   }
   getCloth(): Observable<Category[]>{
-    debugger
+     
     return this.httpClient.get<any>(ApiService.getClothsURL);
   }
 
   saveCat(admin: Category): Observable<any> {
-    debugger
+     
     return this.httpClient.post<any>(ApiService.saveCatURL, admin);
   }
   // getCat(): Observable<Category[]>{
-  //   debugger
+  //    
   //   return this.httpClient.get<any>(ApiService.getCatURL);
   // }
   removeMainCatList(id){
-    debugger
+     
     return this.httpClient.get<any>(ApiService.removeMainCatURL+id);
   }
   updateMainCategory(admin: Category): Observable<any> {
-    debugger
+     
     return this.httpClient.post<any>(ApiService.updateMainCatURL, admin);
   }
   updateMainCat(admin: Category): Observable<any>{
-    debugger
+     
     return this.httpClient.post<any>(ApiService.updateCategoryURL, admin);
   }
   saveAddProduct(admin: Product): Observable<any>{
-    debugger
+     
     return this.httpClient.post<any>(ApiService.saveProductsURL, admin);
   }
   selectUploadImage(img): Observable<any>{
-    debugger
+     
     return this.httpClient.post<any>(ApiService.uploadMainImageURL, img);
 
   }

@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit {
         }
     }
     submitAdminRegister() {
-        debugger
+         
         this.AdminRegisterModel.isactive = true;
         this.registerService.saveAdmin(this.AdminRegisterModel).subscribe((response) => {
             console.log(response);

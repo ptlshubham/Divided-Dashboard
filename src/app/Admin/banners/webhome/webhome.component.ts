@@ -60,7 +60,7 @@ export class WebhomeComponent implements OnInit {
 
   }
   select(event) {
-    debugger
+     
     let max_height;
     let max_width;
     if (event.target.files && event.target.files[0]) {
@@ -128,7 +128,7 @@ export class WebhomeComponent implements OnInit {
             const formdata = new FormData();
             formdata.append('file', file);
 
-            debugger
+             
             this.bannersServie.uploadImage(formdata).subscribe((response) => {
               this.image = response;
               console.log(response);
@@ -149,7 +149,7 @@ export class WebhomeComponent implements OnInit {
 
   }
   saveBannersImage() {
-    debugger
+     
     this.WebbannersModel.bannersimage = this.image;
     this.WebbannersModel.name = this.selectedPosition;
     this.WebbannersModel.status = true;
@@ -159,14 +159,14 @@ export class WebhomeComponent implements OnInit {
     })
   }
   getBanners() {
-    debugger
+     
     this.bannersServie.getWebBanners().subscribe((data: any) => {
       this.webImage = data;
     });
 
   }
   removeBannersImage(id) {
-    debugger
+     
     this.bannersServie.removeWebBanners(id).subscribe((req) => {
       this.getBanners();
     })

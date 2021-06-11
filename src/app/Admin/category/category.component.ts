@@ -91,7 +91,7 @@ export class CategoryComponent implements OnInit {
       if(res){
          
         let data = JSON.parse(res.value);
-        debugger
+         
         this.ProductModel = data[0];
         this.isEdit=true;
         this.isProduct = true;
@@ -206,7 +206,7 @@ export class CategoryComponent implements OnInit {
   getdetailImages(id){
     this.categoryService.getProductDetailImages(id).subscribe(res =>{
       this.addingprdtimg = res;
-      debugger
+       
     })
   }
   async getMainCategory(id) {
@@ -259,9 +259,7 @@ export class CategoryComponent implements OnInit {
 
     })
   }
-  EditedSavesubCategory() {
-
-  }
+  
   cateMain(id) {
      
     this.ImagesModel.mainCategoryId = id;
@@ -279,6 +277,7 @@ export class CategoryComponent implements OnInit {
       if (element.name == this.selectedCat) {
         this.CategoryModel.parent = element.id;
         this.CategoryModel.isactive = 1;
+        this.CategoryModel.bannersimage = this.categoryimage;
       }
     })
     this.categoryService.saveCat(this.CategoryModel).subscribe((response) => {
@@ -544,13 +543,15 @@ export class CategoryComponent implements OnInit {
 
 
   selectBanners(event) {
-    debugger
+     
     let max_height;
     let max_width;
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       // Size Filter Bytes
       const max_size = 20971520;
+      max_height = 380;
+      max_width = 1930;
       const allowed_types = ['image/png', 'image/jpeg'];
       if (event.target.files[0].size > max_size) {
         this.imageError =
@@ -590,7 +591,7 @@ export class CategoryComponent implements OnInit {
             const formdata = new FormData();
             formdata.append('file', file);
 
-            debugger
+             
             this.categoryService.uploadCategoryBannersImage(formdata).subscribe((response) => {
               this.categoryimage = response;
               console.log(response);
