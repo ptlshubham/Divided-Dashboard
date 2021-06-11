@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit{
         }
     }
     login(credentials){
-        debugger
+         
         console.log("......data...." + credentials.email);
         this.loginservice.login(credentials).subscribe(data=>{
           if(data ==1){

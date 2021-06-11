@@ -41,11 +41,11 @@ export class ReviewsComponent implements OnInit {
     });
   }
   editReview(data){
-    debugger
+     
     this.editrating = data;
   }
   updateRatings(data){
-    debugger
+     
     this.reviewsService.updateRating(data).subscribe((req) => {
       this.apiservice.showNotification('top','right','Rating successfully Updated.','success');
     })

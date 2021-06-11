@@ -15,15 +15,15 @@ export class CustomerListService {
   ) { }
 
   getCustomer(): Observable<[]>{
-    debugger
+     
     return this.httpClient.get<any>(ApiService.getCustomerListURL);
   }
 //   updateRating(): Observable<any>{
-//     debugger
+//      
 //     return this.httpClient.post<any>(ApiService.updatereviewsURL, admin);
 //   }
   removeRating(id){
-    debugger
+     
     return this.httpClient.get<any>(ApiService.removeReviewsURL+id);
 
   }

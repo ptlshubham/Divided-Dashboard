@@ -96,7 +96,7 @@ export class ApiService {
   public static getSimilarProductURL: string = ApiService.HOST_URL + '/user/GetSimilarProductList';
 
   showNotification(from, align, msg, color) {
-    debugger
+     
 
     var color = color;
 

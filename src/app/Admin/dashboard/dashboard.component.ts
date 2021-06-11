@@ -721,7 +721,7 @@ export class DashboardComponent implements OnInit {
   }
 
 getRecentOrder(){
-  debugger
+   
   let data={
     status:'Pending'
   }

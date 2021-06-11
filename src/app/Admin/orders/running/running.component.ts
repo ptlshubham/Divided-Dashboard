@@ -45,7 +45,7 @@ export class RunningComponent implements OnInit {
     });
   }
   viewOrdersDetails(data,ind){
-    debugger
+     
     this.Orderview = data;
   }
   selectOrderStatus(name){

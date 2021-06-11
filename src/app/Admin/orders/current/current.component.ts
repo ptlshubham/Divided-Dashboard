@@ -32,7 +32,7 @@ export class CurrentComponent implements OnInit {
     let data = {
       status: 'Pending'
     }
-    debugger
+     
     this.ordersService.getOrders(data).subscribe((data: any) => {
       this.currentOrders = data;
 
@@ -40,13 +40,13 @@ export class CurrentComponent implements OnInit {
   }
   
   viewOrderDetails(data, ind) {
-    debugger
+     
     this.Orderview = data;
     this.Orderview.userAdd = data.address+','+data.city+','+data.state+'-'+data.pincode;
      this.Orderview.index = ind + 1;
   }
   acceptOrders(id) {
-    debugger
+     
     this.ordersService.acceptOrder(id).subscribe((data: any) => {
       this.getRecentOrders();
     })

@@ -91,7 +91,7 @@ export class CategoryComponent implements OnInit {
       if(res){
          
         let data = JSON.parse(res.value);
-        debugger
+         
         this.ProductModel = data[0];
         this.isEdit=true;
         this.isProduct = true;
@@ -200,7 +200,7 @@ export class CategoryComponent implements OnInit {
   getdetailImages(id){
     this.categoryService.getProductDetailImages(id).subscribe(res =>{
       this.addingprdtimg = res;
-      debugger
+       
     })
   }
   async getMainCategory(id) {
@@ -537,7 +537,7 @@ export class CategoryComponent implements OnInit {
 
 
   selectBanners(event) {
-    debugger
+     
     let max_height;
     let max_width;
     if (event.target.files && event.target.files[0]) {
@@ -585,7 +585,7 @@ export class CategoryComponent implements OnInit {
             const formdata = new FormData();
             formdata.append('file', file);
 
-            debugger
+             
             this.categoryService.uploadCategoryBannersImage(formdata).subscribe((response) => {
               this.categoryimage = response;
               console.log(response);

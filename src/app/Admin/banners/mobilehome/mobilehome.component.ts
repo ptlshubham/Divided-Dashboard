@@ -52,14 +52,14 @@ export class MobilehomeComponent implements OnInit {
 
   }
   select(event) {
-    debugger
+     
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
 
       const formdata = new FormData();
       formdata.append('file', file);
 
-      debugger
+       
       this.bannersServie.uploadMobileBannersImage(formdata).subscribe((response) => {
         this.image = response;
         console.log(response);
@@ -68,7 +68,7 @@ export class MobilehomeComponent implements OnInit {
     }
   }
   saveBannersImage() {
-    debugger
+     
     this.WebbannersModel.bannersimage = this.image;
     this.WebbannersModel.name = this.selectedPosition;
     this.WebbannersModel.status = true;
@@ -84,7 +84,7 @@ export class MobilehomeComponent implements OnInit {
 
   }
   removeBannersImage(id) {
-    debugger
+     
     this.bannersServie.removeMobileBanners(id).subscribe((req) => {
       this.getBanners();
     })

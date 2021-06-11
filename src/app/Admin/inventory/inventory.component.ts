@@ -135,10 +135,10 @@ export class InventoryComponent implements OnInit {
       catid:this.subcatid,
       subid: this.subToSubCat
     }
-    debugger
+     
     this.categoryService.GetFilterProduct(data).subscribe(data => {
       this.product = data;
-      debugger
+       
       this.product.forEach(element => {
         this.inventoryService.getSize(element.id).subscribe((data:any)=>{
           element.sizeList = data;
@@ -185,10 +185,10 @@ export class InventoryComponent implements OnInit {
       catid:this.subcatid,
       subid: this.subToSubCat
     }
-    debugger
+     
     this.categoryService.GetFilterProduct(data).subscribe(data => {
       this.product = data;
-      debugger
+       
       this.product.forEach(element => {
         this.inventoryService.getSize(element.id).subscribe((data:any)=>{
           element.sizeList = data;
@@ -203,7 +203,7 @@ export class InventoryComponent implements OnInit {
     })
   }
   addSelectSize(i) {
-    debugger
+     
     let data={
       productid:this.restock.id,
       size:'',
@@ -230,7 +230,7 @@ export class InventoryComponent implements OnInit {
     this.addSelectFields.splice(value, 1);
   }
   getProductList() {
-    debugger
+     
     this.inventoryService.getProduct().subscribe((data: any) => {
       this.product = data;
       this.product.forEach(element => {
@@ -257,7 +257,7 @@ export class InventoryComponent implements OnInit {
 
   }
   selectAll(event) {
-    debugger
+     
     if(event==true){
       this.selectedCheck=false;
       this.inventoryService.getProduct().subscribe((data: any) => {
@@ -287,7 +287,7 @@ export class InventoryComponent implements OnInit {
    
   }
   onChanges(sel,data,idx){
-    debugger
+     
     if(sel == false){
       this.product[idx].selectedCheck = true;
       this.Chagesproduct.push(data);
@@ -304,7 +304,7 @@ export class InventoryComponent implements OnInit {
 
   }
   restokProduct(data,ind) {
-    debugger
+     
     this.restock = data;
     this.restock.index = ind+1;  
     this.getClothSize();
@@ -384,7 +384,7 @@ export class InventoryComponent implements OnInit {
    
   }
   AddToSale(){
-    debugger
+     
     if(this.addsale == false){
       this.addnewarrival = false;
       this.addbestprdt = false;
