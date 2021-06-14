@@ -43,7 +43,7 @@ export class InventoryComponent implements OnInit {
   subtosubid:any;
   isdef:boolean=true;
   isntdef:boolean=false;
-
+  selectedCategory:any;
   addnewarrival:boolean=false;
   addbestprdt:boolean=false;
   addhotprdt:boolean=false;
@@ -53,11 +53,25 @@ export class InventoryComponent implements OnInit {
   public subcategory: Category[] = [];
   public subprodcat: Category[] = [];
   subToSubCat: any;
+  productCategory: any = [];
   constructor(
+
     private categoryService: CategoryService,
     private inventoryService: InventoryService,
     private router:Router
   ) {
+    this.productCategory = [
+      {
+        name: 'Hot Product'
+      },
+      {
+        name: 'Sale Product',
+      },
+      {
+        name: 'New Arrivals',
+      },
+      
+    ]
     this.getProductList();
     this.getMainCategory(0);
   }
@@ -72,6 +86,13 @@ export class InventoryComponent implements OnInit {
         tickIcon: "nc-check-2"
       });
     }
+  }
+  selectProductCategory(name){
+    this.productCategory.forEach(element => {
+      if (element.name == name) {
+        this.selectedCategory = element.name;
+      }
+    })
   }
   ngAfterViewInit(){
     

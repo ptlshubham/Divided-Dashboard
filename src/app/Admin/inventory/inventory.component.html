@@ -55,7 +55,25 @@
                 </div>
 
             </div>
+            <br>
             <div class="row">
+                <label class="col-md-1 col-form-label">Select Product Type
+                </label>
+                <div class="col-md-3">
+                    <div class="dropdown form-group">
+                        <button class="dropdown-toggle btn btn-primary btn-round btn-block" type="button"
+                            name="dropdownMenuButton" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">{{selectedCategory}}
+
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-header">Select Order Status</div>
+                            <div *ngFor="let s of productCategory">
+                                <a class="dropdown-item" (click)="selectProductCategory(s.name)">{{s.name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <label class="col-md-1 col-form-label">Select Date</label>
                 <div class="col-md-3">
                     <!-- <p class="card-title">Select Date</p> -->
