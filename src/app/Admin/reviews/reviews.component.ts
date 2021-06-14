@@ -47,13 +47,11 @@ export class ReviewsComponent implements OnInit {
   updateRatings(data){
      
     this.reviewsService.updateRating(data).subscribe((req) => {
-      this.apiservice.showNotification('top','right','Rating successfully Updated.','success');
     })
 
   }
   removeReview(id){
     this.reviewsService.removeRating(id).subscribe((req) => {
-      this.apiservice.showNotification('top','right','Rating successfully removed.','success');
       this.getReviewList();
     })
   }

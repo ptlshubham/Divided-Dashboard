@@ -14,6 +14,11 @@ export class OrdersService {
     private http: Http,
     private httpClient: HttpClient
   ) { }
+
+  saveStatus(admin: Userorders): Observable<any>{
+    return this.httpClient.post<any>(ApiService.updateOrdersStatusURL, admin);
+  }
+
   getOrders(data): Observable<Userorders[]>{
     
     return this.httpClient.post<any>(ApiService.getOrdersListURL,data);

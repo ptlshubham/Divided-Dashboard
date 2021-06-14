@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdersService } from '../orders.service';
 declare var require: any
 declare var $:any;
 @Component({
@@ -8,7 +9,12 @@ declare var $:any;
 })
 export class CompleteComponent implements OnInit {
   model: Date;
-  constructor() { }
+  completedOrders:any;
+  constructor(
+    private ordersService: OrdersService
+  ) {
+    this.getCompletedOrders();
+   }
 
   ngOnInit(): void {
     this.model = new Date();
@@ -22,5 +28,12 @@ export class CompleteComponent implements OnInit {
   requestReview(){
     
   }
-
+  getCompletedOrders(){
+      let data={
+      status:'Completed'
+    }
+      this.ordersService.getOrders(data).subscribe((data: any) => {
+        this.completedOrders = data;
+      });
+    }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ApiService } from 'app/api.service';
 import { OrdersService } from '../orders.service';
 declare var require: any
 declare var $:any;
@@ -16,7 +17,9 @@ export class RunningComponent implements OnInit {
   orderStatus: any = [];
   selectedStatus:any;
   Orderview:any={};
-  constructor( private ordersService: OrdersService) {
+  constructor( 
+    private ordersService: OrdersService,
+    private apiservice:ApiService) {
     this.orderStatus = [
       {
         name: 'Pending'
@@ -53,6 +56,16 @@ export class RunningComponent implements OnInit {
       if (element.name == name) {
         this.selectedStatus = element.name;
       }
+    })
+  }
+  saveOrderStatus(){
+    let data={
+      id:this.Orderview.id,
+      status:this.selectedStatus
+    }
+    this.ordersService.saveStatus(data).subscribe((req) => {
+      this.apiservice.showNotification('top', 'right', 'Status Change successfully.', 'success');
+      this.getRecentOrders();
     })
   }
 }

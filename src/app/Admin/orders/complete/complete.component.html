@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let co of completedOrders;let i=index">
                             <td>
                                 <div class="form-check">
                                     <label class="form-check-label">
@@ -86,33 +86,29 @@
                                     </label>
                                 </div>
                             </td>
-                            <td>1</td>
-                            <td>Pranav Goswami</td>
+                            <td>{{i+1}}</td>
+                            <td>{{co.username}}</td>
                             <td>
-                                #158762
+                                {{co.id}}
                             </td>
                             <td>
                                 <div class="img-container">
-                                    <img src="./assets/img/2.png" alt="...">
+                                    <img src="http://localhost:8090{{co.productMainImage}}" alt="...">
                                 </div>
                             </td>
 
                             <td>
-                                LG 139 cm (55 inches)
+                                {{co.productName}}
                             </td>
                             <td>
-                                49900 <i class="fa fa-inr" aria-hidden="true"></i>
-                            </td>
-                            <!-- <td>
-                                COD
-                            </td> -->
-                            <td>
-                                13/03/2021
+                                {{co.productPrice}} <i class="fa fa-inr" aria-hidden="true"></i>
                             </td>
                             <td>
-                                23/03/2021
+                                {{co.orderdate | date}}
                             </td>
-
+                            <td>
+                                {{co.deliverydate | date}}
+                            </td>
                             <td>
                                 <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm"
                                     data-toggle="modal" data-target="#noticeModal">
