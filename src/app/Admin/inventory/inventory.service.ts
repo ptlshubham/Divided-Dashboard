@@ -24,6 +24,9 @@ export class InventoryService {
     return this.httpClient.post(ApiService.GetSizeListURL,data);
 
   }
+  getFilterProduct(data){
+    return this.httpClient.post<any>(ApiService.GetFilterProductsURL,data)
+  }
   removeProduct(id) {
 
     return this.httpClient.get<any>(ApiService.removeProductListItemURL + id);

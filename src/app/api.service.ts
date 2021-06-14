@@ -37,6 +37,7 @@ export class ApiService {
   public static saveBankListURL: string = ApiService.HOST_URL + '/admin/SaveBankListCategory';
   public static getBankListURL: string = ApiService.HOST_URL + '/admin/GetBankList';
   public static removeProductListItemURL: string = ApiService.HOST_URL + '/admin/RemoveProduct/';
+  public static GetFilterProductsURL: string = ApiService.HOST_URL + '/admin/GetAllFilterProduct/';
   public static saveAdminLoginURL: string = ApiService.HOST_URL + '/admin/login';
   public static uploadBannersImageURL: string = ApiService.HOST_URL + '/admin/UploadBannersImage';
   public static saveWebBannersURL: string = ApiService.HOST_URL + '/admin/SaveWebBanners';

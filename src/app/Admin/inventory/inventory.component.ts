@@ -70,6 +70,9 @@ export class InventoryComponent implements OnInit {
       {
         name: 'New Arrivals',
       },
+      {
+        name:'Best Product'
+      }
       
     ]
     this.getProductList();
@@ -88,14 +91,67 @@ export class InventoryComponent implements OnInit {
     }
   }
   selectProductCategory(name){
-    this.productCategory.forEach(element => {
-      if (element.name == name) {
-        this.selectedCategory = element.name;
+    this.selectedCategory = name;
+    if(name == 'Hot Product'){
+      let data={
+        filter:'hot'
       }
-    })
+      this.inventoryService.getFilterProduct(data).subscribe((data:any)=>{
+        this.product = data;
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+
+      })
+    }
+    else if(name == 'Best Product'){
+      let data={
+        filter:'best'
+      }
+      this.inventoryService.getFilterProduct(data).subscribe((data:any)=>{
+        this.product = data;
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+      })
+    }
+    else if(name == 'Sale Product'){
+      let data={
+        filter:'sale'
+      }
+      this.inventoryService.getFilterProduct(data).subscribe((data:any)=>{
+        this.product = data;
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+      })
+    }
+    else{
+      let data={
+        filter:'new'
+      }
+      this.inventoryService.getFilterProduct(data).subscribe((data:any)=>{
+        this.product = data;
+      this.product.forEach(element => {
+        this.inventoryService.getSize(element.id).subscribe((data:any)=>{
+          element.sizeList = data;
+        })
+      });
+      })
+    }
+    // this.productCategory.forEach(element => {
+    //   if (element.name == name) {
+    //     this.selectedCategory = element.name;
+    //   }
+    // })
   }
   ngAfterViewInit(){
-    
     $('#datatable').DataTable({
       "pagingType": "full_numbers",
       "lengthMenu": [
