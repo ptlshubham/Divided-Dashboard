@@ -251,7 +251,7 @@ export class CategoryComponent implements OnInit {
     this.selectedCat = name;
   }
   EditedSaveCategory(data) {
-     
+     data.bannerimage = this.categoryimage;
     this.categoryService.updateMainCat(data).subscribe((req) => {
       console.log(req);
       this.apiservice.showNotification('top', 'right', 'Successfully updated.', 'success');
