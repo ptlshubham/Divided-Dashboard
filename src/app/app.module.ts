@@ -45,7 +45,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(AppRoutes, {
-      useHash: true
+      useHash: false
     }),
     NgbModule,
     HttpModule,
